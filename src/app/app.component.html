@@ -1,0 +1,52 @@
+<style>
+  .text-center {
+    text-align: center;
+  }
+
+  .mat-mdc-card {
+    margin-bottom: 10px;
+    border-radius: var(--mdc-elevated-card-container-shape);
+    background-color: #fff5da;
+    border-width: 0;
+    border-style: solid;
+    border-color: var(--mdc-elevated-card-container-color);
+    box-shadow: var(--mdc-elevated-card-container-elevation);
+  }
+  span {
+    color: rgb(193, 203, 7);
+  }
+</style>
+<app-header></app-header>
+
+<div class="text-center">
+  <h1><b>Tasks</b></h1>
+  <br>
+
+  <mat-form-field class="example-form-field">
+    <mat-label>Enter New Task</mat-label>
+    <input matInput type="text" [(ngModel)]="values" placeholder="Ex. I will learn..." #task>
+    @if (values) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="values=''">
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
+
+  <br>
+  <button (click)="addTask(task.value)" mat-raised-button color="primary">Add Task</button>
+  <br><br>
+  <p> <b>Made By :&nbsp;</b>&nbsp; <span> Rajesh Bhola</span></p>
+</div>
+
+
+<div>
+  <mat-card *ngFor="let item of dataSource; let i = index">
+    <mat-card-content>
+      {{item.name}}
+      <button mat-icon-button color="warn" (click)="removeTask(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+  <br>
+</div>
